@@ -1,23 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
-
+import { useContext, useEffect } from 'react';
+import { AppContext } from './contextApi/AppContext'; // app-context
+import Blog from './components/Blog';
+import Buttons from './components/Buttons';
 function App() {
+  const {fetchPost} = useContext(AppContext)
+  useEffect(()=>{
+    fetchPost();
+  },[]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='w-full flex flex-col items-center justify-center'>
+      <div className='w-full text-center border shadow-md py-2 fixed top-0 bg-white'><h1 className='text-3xl font-semibold uppercase'>Blog Page Using Context Api</h1></div>
+      <div className='mt-1'><Blog/></div>
+      <div><Buttons/></div>
     </div>
   );
 }
